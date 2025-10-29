@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   maxHealth: 100
-  CurrentHealth: -30
+  CurrentHealth: 100
   moveSpeed: 10
-  jumpForce: 30
+  jumpForce: 40
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -24,13 +24,13 @@ MonoBehaviour:
   fireRate: 0
   magazineSize: 0
   reloadTime: 0
-  bulletPrefab: {fileID: 5606758191841303808, guid: 52262f9ae6d862f498cf1f8eff0a6324, type: 3}
+  bulletPrefab: {fileID: 6969254594873909852, guid: 52262f9ae6d862f498cf1f8eff0a6324, type: 3}
   B1unlocked: 1
   B2unlocked: 1
   Interval: 5
-  DevpointsB1: 100
-  DevpointsB2: 150
-  DevelopmentPoints: 0
-  MaxDevelopmentPoints: 1000
-  Coins: 0
-  VillagerSaved: 0
+  DevpointsB1: 130
+  DevpointsB2: 180
+  DevelopmentPoints: 3345
+  MaxDevelopmentPoints: 5000
+  Coins: 1670
+  VillagerSaved: 3

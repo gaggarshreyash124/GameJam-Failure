@@ -7,6 +7,7 @@ TagManager:
   - Falling
   - Villager
   - Build
+  - Dead
   layers:
   - Default
   - TransparentFX

@@ -9,7 +9,6 @@ public class Gui : MonoBehaviour
     [SerializeField] Slider Devpoint;
     public TextMeshProUGUI DevText;
     public TextMeshProUGUI CoinsText;
-
     public PlayerData Data;
 
     void Start()
