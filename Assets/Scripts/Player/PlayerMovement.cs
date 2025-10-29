@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour,Idamageable
     public PlayerData playerData;
     public Transform GroundCheck;
     public Transform GunPoint;
+    private Vector3 LastPosition;
 
     private bool isFacingRight = true;
 
@@ -78,5 +79,28 @@ public class PlayerMovement : MonoBehaviour,Idamageable
     public void TakeDamage(float Damage)
     {
         playerData.CurrentHealth -= Damage;
+    }
+
+    public IEnumerator Platformer(Rigidbody2D RB,GameObject Gb)
+    {
+        LastPosition = Gb.transform.position;
+        Debug.Log(Gb.transform.position);
+        yield return new WaitForSeconds(4f);
+        RB.bodyType = RigidbodyType2D.Dynamic;
+        yield return new WaitForSeconds(2f);
+        Gb.SetActive(false);
+        yield return new WaitForSeconds(4f);
+        RB.bodyType = RigidbodyType2D.Static;
+        Gb.transform.position = LastPosition;
+        Gb.SetActive(true);
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.CompareTag("Falling"))
+        {
+            StartCoroutine(Platformer(other.gameObject.GetComponent<Rigidbody2D>(),other.gameObject));
+        }
     }
 }
