@@ -27,4 +27,11 @@ public class Bullet : MonoBehaviour
             other.gameObject.GetComponent<Idamageable>().TakeDamage(gunData.bulletDamage);
         }
     }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.GetComponent<Idamageable>() != null)
+        {
+            other.gameObject.GetComponent<Idamageable>().TakeDamage(gunData.bulletDamage);
+        }
+    }
 }
