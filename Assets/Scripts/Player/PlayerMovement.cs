@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour,Idamageable
     private Vector3 LastPosition;
 
     private bool isFacingRight = true;
+    public int faceDirection = 1;
 
     void Start()
     {
@@ -40,6 +41,10 @@ public class PlayerMovement : MonoBehaviour,Idamageable
             Instantiate(playerData.bulletPrefab, GunPoint.position, GunPoint.rotation);
         }
 
+        if (playerData.DevelopmentPoints <= playerData.MaxDevelopmentPoints)
+        {
+            EndGame();
+        }
 
     }
     
@@ -50,7 +55,7 @@ public class PlayerMovement : MonoBehaviour,Idamageable
             isFacingRight = !isFacingRight;
 
             transform.Rotate(0f, 180f, 0f);
-            playerData.faceDirection *= -1;
+            faceDirection *= -1;
         }
     }
 
@@ -70,7 +75,7 @@ public class PlayerMovement : MonoBehaviour,Idamageable
 
         while (elapsed < dashDuration)
         {
-            rb.velocity = new Vector2(dashSpeed * playerData.faceDirection, 0f);
+            rb.velocity = new Vector2(dashSpeed * faceDirection, 0f);
             elapsed += Time.deltaTime;
             yield return null;
         }
@@ -98,9 +103,49 @@ public class PlayerMovement : MonoBehaviour,Idamageable
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.CompareTag("Falling"))
+        if (other.gameObject.CompareTag("Falling"))
         {
-            StartCoroutine(Platformer(other.gameObject.GetComponent<Rigidbody2D>(),other.gameObject));
+            StartCoroutine(Platformer(other.gameObject.GetComponent<Rigidbody2D>(), other.gameObject));
         }
+    }
+    public void OnTriggerStay2D(Collider2D other)
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+    {
+        if (other.gameObject.CompareTag("Villager"))
+        {
+            playerData.Coins += 200;
+            playerData.DevelopmentPoints += 100;
+            playerData.VillagerSaved += 1;
+        }
+        else if (other.gameObject.CompareTag("Build"))
+        {
+            var buildScript = other.gameObject.GetComponent<BuyBuild>();
+
+            if (!playerData.B1unlocked && playerData.Coins >= 200)
+            {
+                playerData.B1unlocked = true;
+                playerData.Coins -= 200;
+                buildScript.openB1();
+            }
+            else if (!playerData.B2unlocked && playerData.Coins >= 250)
+            {
+                playerData.B2unlocked = true;
+                playerData.Coins -= 250;
+                buildScript.openB1();
+                Debug.Log("open B2");
+            }
+            else
+            {
+                Debug.Log("Cannot Afford");
+            }
+        }
+    }
+
+    }
+
+    public void EndGame()
+    {
+        //Todo
     }
 }

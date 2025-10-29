@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   maxHealth: 100
-  CurrentHealth: 0
+  CurrentHealth: -30
   moveSpeed: 10
   jumpForce: 30
   groundLayer:
@@ -25,3 +25,12 @@ MonoBehaviour:
   magazineSize: 0
   reloadTime: 0
   bulletPrefab: {fileID: 5606758191841303808, guid: 52262f9ae6d862f498cf1f8eff0a6324, type: 3}
+  B1unlocked: 1
+  B2unlocked: 1
+  Interval: 5
+  DevpointsB1: 100
+  DevpointsB2: 150
+  DevelopmentPoints: 0
+  MaxDevelopmentPoints: 1000
+  Coins: 0
+  VillagerSaved: 0

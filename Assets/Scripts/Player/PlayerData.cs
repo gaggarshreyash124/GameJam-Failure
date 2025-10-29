@@ -11,7 +11,7 @@ public class PlayerData : ScriptableObject
 
     [Header("Movement Settings")]
     public float moveSpeed = 5f;
-    public int faceDirection = 1;
+    
     public float jumpForce = 10f;
     public LayerMask groundLayer;
 
@@ -26,8 +26,18 @@ public class PlayerData : ScriptableObject
     public float reloadTime;
     public GameObject bulletPrefab;
 
-    void Start()
-    {
-        maxHealth = CurrentHealth;
-    }
+    [Header("Buildings")]
+    public bool B1unlocked;
+    public bool B2unlocked;
+    public float Interval = 10f;
+    public float DevpointsB1;
+    public float DevpointsB2;
+
+    [Header("Game objectives")]
+
+    public float DevelopmentPoints;
+    public int MaxDevelopmentPoints;
+    public int Coins;
+    public int VillagerSaved;
+
 }
